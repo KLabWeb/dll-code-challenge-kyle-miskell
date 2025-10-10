@@ -418,8 +418,6 @@ Private - See repository license file
 
 ## Related Resources
 
-- [Client Documentation](client/README.md) - Detailed client documentation
-- [Server Documentation](server/README.md) - Detailed server documentation
 - [React Documentation](https://react.dev)
 - [Express Documentation](https://expressjs.com)
 - [Tailwind CSS](https://tailwindcss.com)
