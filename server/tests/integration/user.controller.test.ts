@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { getUsers } from "../../../src/controllers/user.controller";
-import * as userService from "../../../src/services/user.service";
+import { getUsers } from "../../src/controllers/user.controller";
+import * as userService from "../../src/services/user.service";
 
-jest.mock("../../../src/services/user.service");
+jest.mock("../../src/services/user.service");
 
 describe("UserController", () => {
   let mockRequest: Partial<Request>;
