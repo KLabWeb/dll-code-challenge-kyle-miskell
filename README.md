@@ -237,7 +237,13 @@ npm run test:integration # Run integration tests
 npm run test:e2e         # Run supertest E2E tests
 npm run test:all         # Run all tests
 npm run test:coverage    # Run all tests and show coverage
+```
 
+**Tests Run with Coverage:**
+
+![Server Test Coverage](./assets/coverage.png)
+
+```bash
 # Code Quality
 npm run lint             # Check for linting issues
 npm run lint:fix         # Auto-fix linting issues
