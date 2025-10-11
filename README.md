@@ -47,7 +47,7 @@ This repository contains a complete user management system consisting of:
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/KLabWeb/dll-code-challenge-kyle-miskell.git
 cd react-express-code-interview
 ```
 
