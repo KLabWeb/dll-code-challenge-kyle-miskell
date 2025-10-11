@@ -192,7 +192,7 @@ curl http://localhost:3001/api/v1/users?sort=name&page=2&size=15
 
 **Check server health:**
 ```bash
-curl http://localhost:3001/api/v1/health
+curl http://localhost:3001/api/health
 ```
 
 ---
@@ -211,7 +211,7 @@ npm run test:unit        # Run unit tests
 npm run test:integration # Run integration tests
 npm run test:e2e         # Run Playwright E2E tests
 npm run test:e2e:ui      # Run E2E tests with UI mode
-npm run test:all         # Run all jest tests
+npm run test:all         # Run all tests
 npm run test:coverage    # Run all jest tests and show coverage
 
 # Code Quality
@@ -302,7 +302,7 @@ nvm use
 ### DevOps Ready
 
 - API versioning for backward compatibility
-- Graceful shutdown with 10-second timeout
+- Graceful shutdown with 5-second timeout
 - Environment-based configuration
 - Docker-ready (health checks, signal handling)
 - Azure/Kubernetes compatible
@@ -357,8 +357,8 @@ PORT=3002 npm start
 PORT=3002
 
 # Or Kill the existing port processes
-kill -9 $(lsof -ti:3000
-kill -9 $(lsof -ti:3001
+kill -9 $(lsof -ti:3000)
+kill -9 $(lsof -ti:3001)
 ```
 
 ### API Connection Issues
