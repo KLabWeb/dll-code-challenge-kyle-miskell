@@ -190,6 +190,11 @@ curl http://localhost:3001/api/v1/users?sort=name
 curl http://localhost:3001/api/v1/users?sort=name&page=2&size=15
 ```
 
+**Check server health:**
+```bash
+curl http://localhost:3001/api/v1/health
+```
+
 ---
 
 ## Client Scripts
