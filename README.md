@@ -36,6 +36,74 @@ This repository contains a complete user management system consisting of:
 └── README.md
 ```
 
+## Key Features
+
+### Security
+
+- Input sanitization with validator.js
+- Rate limiting with configurable thresholds
+- Helmet.js security headers
+- CORS configuration
+- Request validation middleware
+- Error handling with proper status codes
+
+### Observability
+
+- Request ID tracking for distributed tracing
+- Structured logging with Winston
+- Response time monitoring with slow request detection
+- Comprehensive error logging with stack traces
+- Health check endpoint with detailed metrics
+- File-based log persistence
+
+### DevOps Ready
+
+- API versioning for backward compatibility
+- Graceful shutdown with 5-second timeout
+- Environment-based configuration
+- Docker-ready (health checks, signal handling)
+- Azure/Kubernetes compatible
+- .nvmrc for Node.js version consistency
+
+### API Standards
+
+- OpenAPI 3.0 specification
+- Interactive Swagger documentation
+- RESTful design principles
+- Consistent error response format
+- Comprehensive request/response examples
+
+## Architecture Highlights
+
+### Request Flow
+
+1. Client sends request → API receives with unique request ID
+2. Request ID middleware attaches UUID
+3. Request logger captures timing and metadata
+4. Rate limiter checks request limits
+5. Validation middleware sanitizes inputs
+6. Controller processes request
+7. Service layer applies business logic
+8. Response includes request ID header
+9. Request logger captures completion time
+
+### Error Handling
+
+All errors include:
+- Machine-readable error code
+- Human-readable message
+- Request ID for tracing
+- ISO timestamp
+- Appropriate HTTP status code
+
+### Logging Strategy
+
+- **Debug**: Detailed operational information
+- **Info**: General informational messages
+- **Warn**: Warning messages (slow requests, validation errors)
+- **Error**: Error events (unhandled errors, server errors)
+- **HTTP**: HTTP request completion logs
+
 ## Quick Start
 
 ### Prerequisites
@@ -285,45 +353,6 @@ nvm use
 
 ---
 
-## Key Features
-
-### Security
-
-- Input sanitization with validator.js
-- Rate limiting with configurable thresholds
-- Helmet.js security headers
-- CORS configuration
-- Request validation middleware
-- Error handling with proper status codes
-
-### Observability
-
-- Request ID tracking for distributed tracing
-- Structured logging with Winston
-- Response time monitoring with slow request detection
-- Comprehensive error logging with stack traces
-- Health check endpoint with detailed metrics
-- File-based log persistence
-
-### DevOps Ready
-
-- API versioning for backward compatibility
-- Graceful shutdown with 5-second timeout
-- Environment-based configuration
-- Docker-ready (health checks, signal handling)
-- Azure/Kubernetes compatible
-- .nvmrc for Node.js version consistency
-
-### API Standards
-
-- OpenAPI 3.0 specification
-- Interactive Swagger documentation
-- RESTful design principles
-- Consistent error response format
-- Comprehensive request/response examples
-
----
-
 ## Development Guidelines
 
 ### Code Style
@@ -391,39 +420,6 @@ Use the correct Node.js version:
 nvm install 18.17.0
 nvm use
 ```
-
----
-
-## Architecture Highlights
-
-### Request Flow
-
-1. Client sends request → API receives with unique request ID
-2. Request ID middleware attaches UUID
-3. Request logger captures timing and metadata
-4. Rate limiter checks request limits
-5. Validation middleware sanitizes inputs
-6. Controller processes request
-7. Service layer applies business logic
-8. Response includes request ID header
-9. Request logger captures completion time
-
-### Error Handling
-
-All errors include:
-- Machine-readable error code
-- Human-readable message
-- Request ID for tracing
-- ISO timestamp
-- Appropriate HTTP status code
-
-### Logging Strategy
-
-- **Debug**: Detailed operational information
-- **Info**: General informational messages
-- **Warn**: Warning messages (slow requests, validation errors)
-- **Error**: Error events (unhandled errors, server errors)
-- **HTTP**: HTTP request completion logs
 
 ---
 
