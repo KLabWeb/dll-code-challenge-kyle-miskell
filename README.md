@@ -232,7 +232,10 @@ npm run build            # Build for production
 npm start                # Start production server
 
 # Testing
-npm test                 # Run test suite
+npm run test:unit        # Run unit tests
+npm run test:integration # Run integration tests
+npm run test:e2e         # Run supertest E2E tests
+npm run test:all         # Run all tests
 npm run test:coverage    # Run tests with coverage
 
 # Code Quality
