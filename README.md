@@ -212,6 +212,7 @@ npm run test:integration # Run integration tests
 npm run test:e2e         # Run Playwright E2E tests
 npm run test:e2e:ui      # Run E2E tests with UI mode
 npm run test:all         # Run all tests
+npm run test:coverage    # Run jest tests with coverage
 
 # Code Quality
 npm run lint             # Check for linting issues
