@@ -12,13 +12,12 @@
     "moduleResolution": "node",
     "typeRoots": [
       "./node_modules/@types",
-      "./src/types/@types"
+      "./src/types"
     ]
   },
   "include": [
     "src/**/*",
-    "tests/**/*",
-    "src/types/index.d.ts"
+    "tests/**/*"
   ],
   "exclude": [
     "node_modules",
