@@ -211,8 +211,8 @@ npm run test:unit        # Run unit tests
 npm run test:integration # Run integration tests
 npm run test:e2e         # Run Playwright E2E tests
 npm run test:e2e:ui      # Run E2E tests with UI mode
-npm run test:all         # Run all tests
-npm run test:coverage    # Run jest tests with coverage
+npm run test:all         # Run all jest tests
+npm run test:coverage    # Run all jest tests and show coverage
 
 # Code Quality
 npm run lint             # Check for linting issues
@@ -236,7 +236,7 @@ npm run test:unit        # Run unit tests
 npm run test:integration # Run integration tests
 npm run test:e2e         # Run supertest E2E tests
 npm run test:all         # Run all tests
-npm run test:coverage    # Run tests with coverage
+npm run test:coverage    # Run all tests and show coverage
 
 # Code Quality
 npm run lint             # Check for linting issues
