@@ -92,4 +92,16 @@ describe("UserController", () => {
     expect(nextFunction).toHaveBeenCalledWith(error);
     expect(mockResponse.json).not.toHaveBeenCalled();
   });
+
+  it("should handle non-Error exceptions", async () => {
+    const nonErrorException = "String error message";
+    (userService.getUsers as jest.Mock).mockImplementation(() => {
+      throw nonErrorException;
+    });
+
+    await getUsers(mockRequest as Request, mockResponse as Response, nextFunction);
+
+    expect(nextFunction).toHaveBeenCalledWith(nonErrorException);
+    expect(mockResponse.json).not.toHaveBeenCalled();
+  });
 });

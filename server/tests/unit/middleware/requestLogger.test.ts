@@ -397,4 +397,101 @@ describe("requestLogger Middleware", () => {
       );
     });
   });
+
+  describe("Performance monitoring", () => {
+    it("should log slow requests (> 1 second)", () => {
+      const finishCallback = jest.fn();
+      const originalDateNow = Date.now;
+      let startTime = 1000000;
+
+      // Mock Date.now to simulate a slow request
+      Date.now = jest.fn(() => {
+        const time = startTime;
+        startTime += 1500; // Add 1.5 seconds on second call
+        return time;
+      });
+
+      mockResponse.on = jest.fn((event, callback) => {
+        if (event === "finish") {
+          finishCallback.mockImplementation(callback);
+        }
+        return mockResponse as Response;
+      }) as any;
+
+      requestLogger(mockRequest as Request, mockResponse as Response, nextFunction);
+
+      mockResponse.statusCode = 200;
+      finishCallback();
+
+      expect(logger.warn).toHaveBeenCalledWith(
+        "Request completed - SLOW",
+        expect.objectContaining({
+          durationMs: 1500,
+          slow: true,
+        })
+      );
+
+      // Restore Date.now
+      Date.now = originalDateNow;
+    });
+
+    it("should log very slow requests (> 3 seconds)", () => {
+      const finishCallback = jest.fn();
+      const originalDateNow = Date.now;
+      let startTime = 1000000;
+
+      // Mock Date.now to simulate a very slow request
+      Date.now = jest.fn(() => {
+        const time = startTime;
+        startTime += 4000; // Add 4 seconds on second call
+        return time;
+      });
+
+      mockResponse.on = jest.fn((event, callback) => {
+        if (event === "finish") {
+          finishCallback.mockImplementation(callback);
+        }
+        return mockResponse as Response;
+      }) as any;
+
+      requestLogger(mockRequest as Request, mockResponse as Response, nextFunction);
+
+      mockResponse.statusCode = 200;
+      finishCallback();
+
+      expect(logger.warn).toHaveBeenCalledWith(
+        "Request completed - VERY SLOW",
+        expect.objectContaining({
+          durationMs: 4000,
+          verySlow: true,
+        })
+      );
+
+      // Restore Date.now
+      Date.now = originalDateNow;
+    });
+
+    it("should not log as slow for fast requests", () => {
+      const finishCallback = jest.fn();
+      mockResponse.on = jest.fn((event, callback) => {
+        if (event === "finish") {
+          finishCallback.mockImplementation(callback);
+        }
+        return mockResponse as Response;
+      }) as any;
+
+      requestLogger(mockRequest as Request, mockResponse as Response, nextFunction);
+
+      mockResponse.statusCode = 200;
+      finishCallback();
+
+      expect(logger.http).toHaveBeenCalledWith(
+        "Request completed",
+        expect.objectContaining({
+          slow: false,
+          verySlow: false,
+        })
+      );
+    });
+  });
 });

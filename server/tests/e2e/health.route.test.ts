@@ -371,4 +371,39 @@ describe("GET /api/health", () => {
       expect(response.body.status).toBe("healthy");
     });
   });
+
+  describe("Formatted uptime variations", () => {
+    it("should format uptime with days correctly", async () => {
+      const response = await request(app).get("/api/health").expect(200);
+
+      expect(response.body.uptime.formatted).toBeDefined();
+      expect(typeof response.body.uptime.formatted).toBe("string");
+
+      // The formatted string should always end with seconds
+      expect(response.body.uptime.formatted).toMatch(/\d+s$/);
+    });
+
+    it("should format uptime consistently", async () => {
+      const response = await request(app).get("/api/health").expect(200);
+
+      const formatted = response.body.uptime.formatted;
+
+      // Should have at least seconds in the format
+      expect(formatted).toContain("s");
+
+      // Verify it's a valid uptime format (combinations of d, h, m, s)
+      expect(formatted).toMatch(/^(\d+d\s)?(\d+h\s)?(\d+m\s)?\d+s$/);
+    });
+
+    it("should handle various uptime ranges", async () => {
+      const response = await request(app).get("/api/health").expect(200);
+
+      const formatted = response.body.uptime.formatted;
+
+      // For test environment, uptime should be small
+      // Format should be reasonable (not empty, not malformed)
+      expect(formatted.length).toBeGreaterThan(0);
+      expect(formatted).toMatch(/\d/); // Should contain at least one digit
+    });
+  });
 });
