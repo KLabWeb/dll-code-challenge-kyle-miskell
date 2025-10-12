@@ -253,6 +253,11 @@ curl "http://localhost:3001/api/v1/users?size=25"
 curl "http://localhost:3001/api/v1/users?sort=name"
 ```
 
+**Sort by id (ascending):**
+```bash
+curl "http://localhost:3001/api/v1/users?sort=id"
+```
+
 **Combined parameters:**
 ```bash
 curl "http://localhost:3001/api/v1/users?sort=name&page=2&size=15"
