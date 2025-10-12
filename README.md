@@ -235,32 +235,32 @@ Health check endpoint for monitoring and DevOps.
 
 **Get all users with default pagination:**
 ```bash
-curl http://localhost:3001/api/v1/users
+curl "http://localhost:3001/api/v1/users"
 ```
 
 **Get specific page:**
 ```bash
-curl http://localhost:3001/api/v1/users?page=2
+curl "http://localhost:3001/api/v1/users?page=2"
 ```
 
 **Custom page size:**
 ```bash
-curl http://localhost:3001/api/v1/users?size=25
+curl "http://localhost:3001/api/v1/users?size=25"
 ```
 
 **Sort by name (alphabetically):**
 ```bash
-curl http://localhost:3001/api/v1/users?sort=name
+curl "http://localhost:3001/api/v1/users?sort=name"
 ```
 
 **Combined parameters:**
 ```bash
-curl http://localhost:3001/api/v1/users?sort=name&page=2&size=15
+curl "http://localhost:3001/api/v1/users?sort=name&page=2&size=15"
 ```
 
 **Check server health:**
 ```bash
-curl http://localhost:3001/api/health
+curl "http://localhost:3001/api/health"
 ```
 
 ---
