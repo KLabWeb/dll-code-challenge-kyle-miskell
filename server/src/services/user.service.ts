@@ -9,7 +9,7 @@ interface User {
 type SortableUserField = "name" | "id";
 
 interface GetUsersParams {
-  sort?: SortableUserField;
+  sort?: SortableUserField; // Optional
   page: number;
   size: number;
 }
@@ -17,15 +17,15 @@ interface GetUsersParams {
 interface PagingUrlParams {
   page: number;
   size: number;
-  sort?: SortableUserField;
+  sort?: SortableUserField; // Optional
   totalResults: number;
   baseUrl: string;
 }
 
 interface PagingResponse {
   totalResults: number;
-  previous?: string;
-  next?: string;
+  previous?: string;  // Only return if applicable
+  next?: string; // Only return if applicable
 }
 
 interface GetUsersResult {
@@ -116,11 +116,13 @@ export const buildPagingUrls = (params: PagingUrlParams): PagingResponse => {
 
   const paging: PagingResponse = { totalResults };
 
+  // Only return previous page url when applicable
   if (page > 1) {
     paging.previous = buildUrl(page - 1);
     logger.debug("Previous page URL generated", { url: paging.previous });
   }
 
+  // Only return next page url when applicable
   if (page < totalPages) {
     paging.next = buildUrl(page + 1);
     logger.debug("Next page URL generated", { url: paging.next });
