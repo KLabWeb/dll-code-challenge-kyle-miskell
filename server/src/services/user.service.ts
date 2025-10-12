@@ -43,13 +43,15 @@ export const getUsers = (params: GetUsersParams): GetUsersResult => {
     sort: sort || "none",
   });
 
-  // Sort
+  // Sort - Dynamic implementation using bracket notation
+  // This supports any current or future user field without code changes
+  // Just update the User interface and SortableUserField type to add new fields
   const sortedUsers: User[] = [...users];
   if (sort) {
     logger.debug("Sorting users", { field: sort, totalUsers: users.length });
 
     sortedUsers.sort((a, b) => {
-      const aVal = a[sort];
+      const aVal = a[sort]; // Dynamic field access - works with any field name
       const bVal = b[sort];
       return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
     });
