@@ -7,6 +7,7 @@ const isTestOrDev = process.env.NODE_ENV === "test" || process.env.NODE_ENV === 
 const windowMS = isTestOrDev ? 1 * 60 * 1000 : 15 * 60 * 1000; // 1 minute for test/dev, 15 minutes for production
 const maxRequests = isTestOrDev ? 1000 : 100; // 1000 requests for test/dev, 100 for production
 
+// Limit requests to a maxRequests per windowMS time period, by ip, where Express gets ip from req.ip
 export const rateLimiter = rateLimit({
   windowMs: windowMS,
   max: maxRequests,

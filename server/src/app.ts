@@ -11,14 +11,14 @@ import { requestLogger } from "./middleware/requestLogger";
 import { requestIdMiddleware } from "./middleware/requestId";
 import logger from "./config/winstonLogger";
 
-// Log startup
+// Log startup using version info
 logger.info("Application starting...", {
   nodeVersion: process.version,
   environment: process.env.NODE_ENV || "development",
   port: process.env.PORT || 3001,
 });
 
-// Middleware - CORRECT ORDER
+// Middleware - CORRECT ORDER - Applies to all API calls
 app.use(requestIdMiddleware); // Request ID FIRST (for tracing)
 app.use(requestLogger); // Logger SECOND (logs with request ID)
 app.use("/api/v1", routes); // Routes THIRD - versioned API (primary)

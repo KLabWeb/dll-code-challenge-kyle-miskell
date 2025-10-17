@@ -60,6 +60,7 @@ const router = express.Router();
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
  */
+// Add rateLimiter, PaginationValidator, and validateSort middleware to getUsers route
 router.get("/", rateLimiter, paginationValidator, validateSort, userController.getUsers);
 
 export default router;
