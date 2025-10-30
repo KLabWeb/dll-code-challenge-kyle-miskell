@@ -1,4 +1,4 @@
-# DLL Coding Challenge - User Management Application
+# [Redacted] Coding Challenge - User Management Application
 
 A production-ready, full-stack application for browsing and managing user data with sorting and pagination capabilities, built with enterprise-grade features for financial services.
 
