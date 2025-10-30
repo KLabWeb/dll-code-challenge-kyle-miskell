@@ -3,7 +3,6 @@
 A production-ready, full-stack application for browsing and managing user data with sorting and pagination capabilities, built with enterprise-grade features for financial services.
 
 - **Author:** Kyle Miskell (kmiskell@protonmail.com)
-- **Boilerplate Author:** Chris Kurhan (chris.kurhan@dllgroup.com)
 
 ## Overview
 
